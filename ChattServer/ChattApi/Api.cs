@@ -22,7 +22,7 @@ public class Api
             {
                 Console.WriteLine(e);
             }
-        } while (_tcpClient is { Connected: false });
+        } while (_tcpClient != null && !_tcpClient.Connected);
 
         Console.WriteLine("Blocking");
         Authenticate(authenticationMethod);
@@ -39,7 +39,7 @@ public class Api
         {
             var a = _tcpClient.GetStream().Read(buf);
             msg = Encoding.UTF8.GetString(buf, 0, a);
-        } while (msg != "name");
+        } while (msg != "Name");
 
         var name = authenticationMethod();
         var bytesToSend = Encoding.UTF8.GetBytes(name);
@@ -57,9 +57,11 @@ public class Api
         Console.WriteLine("Im still async");
     }
 
-    public async void SendMessage(string msg)
+    public async void SendMessage(string? msg)
     {
         var bytes = Encoding.UTF8.GetBytes(msg);
+        Console.WriteLine("awaiting send");
         await _tcpClient.GetStream().WriteAsync(bytes);
+        Console.WriteLine("Done");
     }
 }

@@ -6,7 +6,7 @@ namespace ChatServer;
 
 public class Server
 {
-    private readonly Dictionary<string, Socket> _users = new Dictionary<string, Socket>();
+    private readonly Dictionary<Socket, string> _users = new Dictionary<Socket, string>();
     private readonly Socket _socket;
 
     public Server()
@@ -47,7 +47,7 @@ public class Server
         var buffer = new byte[1024];
         var bytes = await client.ReceiveAsync(buffer);
         var name = Encoding.UTF8.GetString(buffer, 0, bytes);
-        _users.Add(name, client);
+        _users.Add(client, name);
         Console.WriteLine("added user: " + name);
         OnReceivedData(client);
         Console.WriteLine("IM LEAVING");
@@ -61,7 +61,29 @@ public class Server
             var bytes =  await client.ReceiveAsync(buffer);
             var msgReceived = Encoding.UTF8.GetString(buffer, 0, bytes);
             Console.WriteLine(msgReceived);
-            await Task.Delay(10000);
+            
+            await SendToClients(new KeyValuePair<Socket, string>(client, _users[client]), msgReceived);
         }
+    }
+
+    private async Task SendToClients(KeyValuePair<Socket, string> receivedFrom,string msg)
+    {
+        try
+        {
+            foreach (var pair in _users) 
+            {
+                if (pair.Key == receivedFrom.Key)
+                    continue;
+
+                var newMsg = Encoding.UTF8.GetBytes(receivedFrom.Value + " sent: " + msg);
+                await pair.Key.SendAsync(newMsg);
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        
     }
 }

@@ -24,11 +24,8 @@ public class Api
             }
         } while (_tcpClient != null && !_tcpClient.Connected);
 
-        Console.WriteLine("Blocking");
         Authenticate(authenticationMethod);
-        Console.WriteLine("Starting async listener");
         Task.Run(ListeningChannel);
-        Console.WriteLine("ctor done");
     }
 
     private void Authenticate(Func<string> authenticationMethod)
@@ -48,20 +45,18 @@ public class Api
 
     private async void ListeningChannel()
     {
-        var buf = new byte[1024];
-
-        var a = await _tcpClient.GetStream().ReadAsync(buf);
-        var msg = Encoding.UTF8.GetString(buf, 0, a);
-        Console.WriteLine("Got a msg");
-        await _onNewMsg(msg);
-        Console.WriteLine("Im still async");
+        while (true)
+        {
+            var buf = new byte[1024];
+            var a = await _tcpClient.GetStream().ReadAsync(buf);
+            var msg = Encoding.UTF8.GetString(buf, 0, a);
+            await _onNewMsg(msg);
+        }
     }
 
     public async void SendMessage(string? msg)
     {
         var bytes = Encoding.UTF8.GetBytes(msg);
-        Console.WriteLine("awaiting send");
         await _tcpClient.GetStream().WriteAsync(bytes);
-        Console.WriteLine("Done");
     }
 }

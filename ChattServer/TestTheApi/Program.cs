@@ -3,16 +3,14 @@
 
 using ChattApi;
 
-Console.WriteLine("Hello, World!");
 
 var api = new Api(Authentication, s => Task.Run(() => Console.WriteLine(s)));
+
 while (true)
 {
     Console.WriteLine("Write something to server:");
     api.SendMessage(Console.ReadLine());
-    Console.WriteLine("Sending");
 }
-
 
 
 return;

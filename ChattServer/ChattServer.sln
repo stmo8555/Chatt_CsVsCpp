@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChattServer", "ChattServer\ChattServer.csproj", "{C9FD6966-D5DB-44FD-BB18-47B29ECE738E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChattApi", "ChattApi\ChattApi.csproj", "{3E137E98-3BED-4110-9CFC-97568632D1D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTheApi", "TestTheApi\TestTheApi.csproj", "{67ECC313-B944-4966-ACF6-E4D1ACAD4CBA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C9FD6966-D5DB-44FD-BB18-47B29ECE738E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9FD6966-D5DB-44FD-BB18-47B29ECE738E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9FD6966-D5DB-44FD-BB18-47B29ECE738E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9FD6966-D5DB-44FD-BB18-47B29ECE738E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E137E98-3BED-4110-9CFC-97568632D1D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E137E98-3BED-4110-9CFC-97568632D1D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E137E98-3BED-4110-9CFC-97568632D1D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E137E98-3BED-4110-9CFC-97568632D1D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67ECC313-B944-4966-ACF6-E4D1ACAD4CBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67ECC313-B944-4966-ACF6-E4D1ACAD4CBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67ECC313-B944-4966-ACF6-E4D1ACAD4CBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67ECC313-B944-4966-ACF6-E4D1ACAD4CBA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
